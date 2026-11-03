@@ -11,7 +11,7 @@ st.set_page_config(
 
 # Initialize GenAI Client
 # Ensure your GEMINI_API_KEY environment variable is set or replace with your key
-client = genai.Client(api_key=gen-lang-client-0676526378)
+client = genai.Client(api_key="gen-lang-client-0676526378")
 
 # App Header
 st.title("🎓 UBC Science Co-op LinkedIn Content Engine")
