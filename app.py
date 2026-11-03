@@ -138,4 +138,4 @@ with col2:
 
     st.success("Draft ready! Review above and copy for publishing.")
   else:
-    st.info("Your generated post will appear here for review and editing.")
+    st.info("Your generated post will appear here for review and editing.") 
