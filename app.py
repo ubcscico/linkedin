@@ -10,12 +10,12 @@ st.set_page_config(
 )
 
 # Check if API key exists in secrets
-            if "GEMINI_API_KEY" not in st.secrets:
-                st.error("Error: GEMINI_API_KEY is missing from Streamlit Secrets!")
-                st.stop()
+if "GEMINI_API_KEY" not in st.secrets:
+  st.error("Error: GEMINI_API_KEY is missing from Streamlit Secrets!")
+  st.stop()
 
-            # Initialize Gemini Client with API key from secrets
-            client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+# Initialize Gemini Client with API key from secrets
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 # App Header
 st.title("🎓 UBC Science Co-op LinkedIn Content Engine")
