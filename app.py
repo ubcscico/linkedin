@@ -9,14 +9,13 @@ st.set_page_config(
     layout="wide",
 )
 
-# Initialize GenAI Client using Streamlit secrets (safely handles local and cloud environments)
-try:
-  if "GEMINI_API_KEY" in st.secrets:
-    os.environ["GEMINI_API_KEY"] = st.secrets["GEMINI_API_KEY"]
-  client = genai.Client()
-except Exception as e:
-  # Fallback if secrets aren't set up yet during initial local testing
-  client = genai.Client()
+# Check if API key exists in secrets
+            if "GEMINI_API_KEY" not in st.secrets:
+                st.error("Error: GEMINI_API_KEY is missing from Streamlit Secrets!")
+                st.stop()
+
+            # Initialize Gemini Client with API key from secrets
+            client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 # App Header
 st.title("🎓 UBC Science Co-op LinkedIn Content Engine")
