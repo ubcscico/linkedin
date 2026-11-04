@@ -40,15 +40,6 @@ pillar = st.sidebar.selectbox(
     ],
 )
 
-tone = st.sidebar.selectbox(
-    "Select Tone & Style",
-    [
-        "Authoritative & Strategic (Best for hiring managers/executives)",
-        "Conversational & Approachable (Best for general networking)",
-        "Data-Driven & Analytical (Focus on ROI and skills depth)",
-    ],
-)
-
 include_cta = st.sidebar.checkbox(
     "Include UBC Science Co-op Employer CTA", value=True
 )
@@ -88,28 +79,29 @@ with col2:
     else:
       with st.spinner("Drafting your post with Gemini..."):
         try:
-          # Construct system prompt enforcing voice and safety/quality guidelines
+          # Construct system prompt enforcing a unified professional, data-driven, and approachable voice
           system_instruction = (
               "You are an expert career educator and program coordinator for"
               " the UBC Science Co-op program. Your goal is to write"
               " high-engagement LinkedIn posts targeting engineering and"
               " science hiring managers, tech leads, and recruiters to"
-              " encourage them to hire UBC Science Co-op students.\n\nGuidelines:\n-"
-              " Craft a compelling, attention-grabbing hook (short, punchy first"
-              " line).\n- Use clean formatting with short paragraphs and"
-              " bullet points for readability.\n- Maintain an authentic,"
-              " professional, yet approachable voice.\n- Seamlessly bridge the"
-              " core topic back to the value of hiring UBC Science Co-op"
-              " students.\n- Include a clear, professional Call-to-Action"
-              " (CTA) prompting employers to connect, review hiring timelines,"
-              " or visit the employer portal."
+              " encourage them to hire UBC Science Co-op students.\n\nVoice & Style Guidelines:\n-"
+              " Maintain a seamless mix of professional authority,"
+              " data-driven credibility (highlighting ROI, metrics, and"
+              " technical readiness), and an approachable, conversational"
+              " tone.\n- Craft a compelling, attention-grabbing hook (short,"
+              " punchy first line).\n- Use clean formatting with short"
+              " paragraphs and bullet points for readability.\n- Seamlessly"
+              " bridge the core topic back to the value of hiring UBC Science"
+              " Co-op students.\n- Include a clear, professional"
+              " Call-to-Action (CTA) prompting employers to connect, review"
+              " hiring timelines, or visit the employer portal."
           )
 
           prompt = (
               f"Please generate a LinkedIn post based on the following"
-              f" details:\n\nContent Pillar: {pillar}\nDesired Tone:"
-              f" {tone}\nInclude Employer CTA:"
-              f" {'Yes' if include_cta else 'No'}\n\nRaw Source Material /"
+              f" details:\n\nContent Pillar: {pillar}\nInclude Employer"
+              f" CTA: {'Yes' if include_cta else 'No'}\n\nRaw Source Material /"
               f" Notes:\n{raw_input}"
           )
 
@@ -138,4 +130,4 @@ with col2:
 
     st.success("Draft ready! Review above and copy for publishing.")
   else:
-    st.info("Your generated post will appear here for review and editing.") 
+    st.info("Your generated post will appear here for review and editing.")
