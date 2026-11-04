@@ -105,14 +105,25 @@ with col2:
               f" Notes:\n{raw_input}"
           )
 
-          response = client.models.generate_content(
-              model="gemini-3.8-flash",
-              contents=prompt,
-              config={
-                  "system_instruction": system_instruction,
-                  "temperature": 0.7,
-              },
-          )
+          # Attempt primary model with fallback for high demand (503)
+          try:
+            response = client.models.generate_content(
+                model="gemini-3.8-flash",
+                contents=prompt,
+                config={
+                    "system_instruction": system_instruction,
+                    "temperature": 0.7,
+                },
+            )
+          except Exception:
+            response = client.models.generate_content(
+                model="gemini-3.5-flash-lite",
+                contents=prompt,
+                config={
+                    "system_instruction": system_instruction,
+                    "temperature": 0.7,
+                },
+            )
 
           # Store in session state so edits persist
           st.session_state["generated_draft"] = response.text
